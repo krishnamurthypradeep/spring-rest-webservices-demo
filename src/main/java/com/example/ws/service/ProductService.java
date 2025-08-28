@@ -30,4 +30,13 @@ public class ProductService {
 
         return product1;
     }
+    public Product update(Long id,Product product){
+        return products.stream().filter(p-> p.getId().equals(id))
+                .findFirst()
+                .map(existing -> {
+                    existing.setName(product.getName());
+                    existing.setPrice(product.getPrice());
+                    return existing;
+                });
+    }
 }
