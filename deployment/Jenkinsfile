@@ -47,11 +47,12 @@ pipeline {
                      sh "docker build -t kpradeep/spring-rest-ws-demo ."
                      }
                      else {
-                                     bat "docker build -t kpradeep/spring-rest-ws-demo ."
-                                     }
+                      bat "docker build -t kpradeep/spring-rest-ws-demo ."
+                             }
      }
      }
 
     }
 
+}
 }
