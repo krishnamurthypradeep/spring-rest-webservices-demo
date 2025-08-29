@@ -37,6 +37,9 @@ public class ProductService {
                     existing.setName(product.getName());
                     existing.setPrice(product.getPrice());
                     return existing;
-                });
+                }).orElseThrow(()-> new RuntimeException("Product Not Found "+id));
+    }
+    public boolean delete(Long id){
+        return products.removeIf(p -> p.getId().equals(id));
     }
 }
