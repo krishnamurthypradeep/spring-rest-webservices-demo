@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+
+    tools{
+    maven 'mvn'
+    }
+    environment {
+        GIT_URL = 'git@github.com:krishnamurthypradeep/spring-rest-webservices-demo.git'
+
+    }
+    stages {
+     stage ('Build'){
+        steps {
+
+        git url: ${GIT_URL}
+
+        script{
+        if(isUnix()){
+        sh "mvn -Dmaven.test.failure.ignore=true clean package"
+        }
+        else {
+        bat "mvn -Dmaven.test.failure.ignore=true clean package"
+        }
+        }
+        }
+
+     }
+     stage('Integration Test'){
+        steps {
+        script{
+                if(isUnix()){
+                sh "mvn -Dmaven.test.failure.ignore=true clean verify"
+                }
+                else {
+                bat "mvn -Dmaven.test.failure.ignore=true clean verify"
+                }
+                }
+
+        }
+
+     }
+
+    }
+
+}
