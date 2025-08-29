@@ -12,7 +12,7 @@ pipeline {
      stage ('Build'){
         steps {
 
-        git url: ${GIT_URL}
+        git url: "${GIT_URL}"
 
         script{
         if(isUnix()){
