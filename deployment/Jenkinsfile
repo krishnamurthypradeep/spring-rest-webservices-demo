@@ -39,6 +39,18 @@ pipeline {
         }
 
      }
+     stage('Docker Build'){
+
+     steps {
+      script{
+                     if(isUnix()){
+                     sh "docker build -t kpradeep/spring-rest-ws-demo ."
+                     }
+                     else {
+                                     bat "docker build -t kpradeep/spring-rest-ws-demo ."
+                                     }
+     }
+     }
 
     }
 
